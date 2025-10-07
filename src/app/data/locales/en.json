@@ -1,0 +1,14 @@
+{
+  "name": "Song",
+  "artist": "Artist",
+  "album": "Album",
+  "genre": "Genre",
+  "Language": "Language",
+  "Likes": "Likes:",
+  "Enter seed...": "Enter seed...",
+  "Gallery": "Gallery",
+  "Table": "Table",
+  "Russian": "Russian",
+  "English": "English",
+  "Text song": "Text song:"
+}
