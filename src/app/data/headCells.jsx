@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 export const useTableHeadCells = () => {
-  const { t } = useTranslation(); // 'common' - namespace твоих файлов
+  const { t } = useTranslation();
 
   const headCells = [
     { id: 'expand', label: '', disablePadding: false, numeric: false },

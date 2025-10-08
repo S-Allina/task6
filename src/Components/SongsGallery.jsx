@@ -8,7 +8,7 @@ import {
   Grid,
   CircularProgress,
 } from '@mui/material';
-import InfiniteScroll from 'react-infinite-scroll-component'; // Импортируем компонент
+import InfiniteScroll from 'react-infinite-scroll-component'; 
 import Player from './Player';
 import { useTranslation } from 'react-i18next';
 
