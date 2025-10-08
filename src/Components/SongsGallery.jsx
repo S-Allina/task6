@@ -16,7 +16,6 @@ export default function SongsGallery({ songs, fetchMoreData, hasMore, isLoading 
   const { t } = useTranslation();
 
   return (
-    // ✅ ИСПРАВЛЕНО: Добавлен id для scrollableTarget
     <Box
       id="scrollableDiv"
       sx={{
@@ -25,17 +24,14 @@ export default function SongsGallery({ songs, fetchMoreData, hasMore, isLoading 
         overflowY: 'auto',
         maxHeight: '80vh',
         margin: '0 auto',
-        // Убедимся, что контейнер действительно скроллится
         height: '80vh',
       }}
     >
-      {/* ✅ ИСПРАВЛЕНО: InfiniteScroll с правильными параметрами */}
       <InfiniteScroll
-        dataLength={songs.length} // Количество уже загруженных элементов
-        next={fetchMoreData} // Функция для загрузки следующих данных
-        hasMore={hasMore} // Флаг, указывающий, есть ли еще данные для загрузки
+        dataLength={songs.length} 
+        next={fetchMoreData}
+        hasMore={hasMore} 
         loader={
-          // Показываем лоадер только если есть еще данные
           hasMore && (
             <Box display="flex" justifyContent="center" sx={{ py: 2 }}>
               <CircularProgress />
@@ -51,10 +47,9 @@ export default function SongsGallery({ songs, fetchMoreData, hasMore, isLoading 
             </Box>
           )
         }
-        scrollableTarget="scrollableDiv" // ID прокручиваемого контейнера
-        // ✅ Дополнительные улучшения для лучшей работы
+        scrollableTarget="scrollableDiv" 
         style={{
-          overflow: 'visible', // Важно для корректного отображения Grid
+          overflow: 'visible', 
         }}
       >
         <Grid container spacing={3}>
@@ -122,7 +117,6 @@ export default function SongsGallery({ songs, fetchMoreData, hasMore, isLoading 
           ))}
         </Grid>
 
-        {/* ✅ Сообщение, если нет песен */}
         {songs.length === 0 && !isLoading && (
           <Box sx={{ textAlign: 'center', padding: '40px' }}>
             <Typography variant="h6" color="text.secondary">
