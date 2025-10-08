@@ -17,7 +17,7 @@ export default function Songs() {
   const [likes, setLikes] = useState('');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-   const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const {
     data: songs = [],
@@ -33,18 +33,18 @@ export default function Songs() {
   });
 
   const dispatch = useDispatch();
-  const [allSongs, setAllSongs] = useState([]); 
+  const [allSongs, setAllSongs] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     if (viewMode === 'gallery' && songs.length > 0) {
       setAllSongs((prev) => {
-        const newSongs = songs.filter(newSong => 
-          !prev.some(existingSong => existingSong.id === newSong.id)
+        const newSongs = songs.filter(
+          (newSong) => !prev.some((existingSong) => existingSong.id === newSong.id),
         );
         return [...prev, ...newSongs];
       });
-      
+
       if (songs.length < rowsPerPage) {
         setHasMore(false);
       }
@@ -65,7 +65,7 @@ export default function Songs() {
 
   const tableRows = useMemo(() => {
     return songs.map((song, index) => ({
-      index: index + 1 + (page * rowsPerPage),
+      index: index + 1 + page * rowsPerPage,
       id: song.id,
       Name: song.title,
       Artist: song.artist,
@@ -99,7 +99,7 @@ export default function Songs() {
   const handleChangeRowsPerPage = (event) => {
     const newRowsPerPage = parseInt(event.target.value, 10);
     setRowsPerPage(newRowsPerPage);
-    setPage(0); 
+    setPage(0);
   };
 
   useEffect(() => {
@@ -175,17 +175,17 @@ export default function Songs() {
                 rowsPerPage={rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 rowsPerPageOptions={[5, 10, 25, 50]}
-                labelRowsPerPage={t("Lines per page")}
+                labelRowsPerPage={t('Lines per page')}
                 labelDisplayedRows={({ from, to, count }) =>
                   `${from}-${to} ${t('out of')} ${count !== -1 ? count : `${t('more')} ${to}`}`
                 }
               />
             </>
           ) : (
-            <SongsGallery 
-              songs={galleryRows} 
-              fetchMoreData={fetchMoreData} 
-              hasMore={hasMore} 
+            <SongsGallery
+              songs={galleryRows}
+              fetchMoreData={fetchMoreData}
+              hasMore={hasMore}
               isLoading={isLoading}
             />
           )}
