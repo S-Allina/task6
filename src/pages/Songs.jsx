@@ -8,6 +8,7 @@ import { setSongs } from '../slices/songsSlice';
 import SongsGallery from '../Components/SongsGallery';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function Songs() {
   const [viewMode, setViewMode] = useState('table');
@@ -16,6 +17,7 @@ export default function Songs() {
   const [likes, setLikes] = useState('');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+   const { t } = useTranslation();
 
   const {
     data: songs = [],
@@ -173,9 +175,9 @@ export default function Songs() {
                 rowsPerPage={rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 rowsPerPageOptions={[5, 10, 25, 50]}
-                labelRowsPerPage="Строк на странице:"
+                labelRowsPerPage={t("Lines per page")}
                 labelDisplayedRows={({ from, to, count }) =>
-                  `${from}-${to} из ${count !== -1 ? count : `более ${to}`}`
+                  `${from}-${to} ${t('out of')} ${count !== -1 ? count : `${t('more')} ${to}`}`
                 }
               />
             </>
